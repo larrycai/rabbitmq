@@ -52,9 +52,9 @@ RUN set -ex; \
 	wget -O rabbitmq-server.tar.xz.asc "https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz.asc"; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
-        gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-        gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
-        gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
+        gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" || \
+        gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" || \
+        gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" ; \
 	gpg --batch --verify rabbitmq-server.tar.xz.asc rabbitmq-server.tar.xz; \
 	rm -rf "$GNUPGHOME" rabbitmq-server.tar.xz.asc; \
 	\
